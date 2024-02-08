@@ -6,7 +6,8 @@ WORKDIR /app
 RUN git clone https://github.com/wesley-codes/container-test.git
 RUN npm install && npm run build
 
-
+FROM node:latest
+WORKDIR /app
 COPY --from=BUILD_IMAGE /app/dist ./dist
 COPY --from=BUILD_IMAGE /app/package*.json ./
 RUN npm install

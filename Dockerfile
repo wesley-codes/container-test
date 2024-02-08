@@ -4,7 +4,8 @@ LABEL "Author"="Eze Nnameka"
 
 WORKDIR /app
 RUN git clone https://github.com/wesley-codes/container-test.git
-RUN npm install && npm run build
+RUN npm install 
+RUN  npm run build
 
 FROM node:latest
 WORKDIR /app

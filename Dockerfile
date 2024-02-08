@@ -1,16 +1,12 @@
-# Stage 1: Build stage
 FROM node:latest AS BUILD_IMAGE
-LABEL "Project"="Loctech"
-LABEL "Author"="Eze Nnameka"
 
 # Set the working directory
 WORKDIR /app
 
 # Clone the repository and navigate into it
-RUN git clone https://github.com/wesley-codes/container-test.git / \
-    && cd /app/container-test 
-  
-RUN echo"I am Done"
+RUN git clone https://github.com/wesley-codes/container-test.git  \ 
+ && cd /app/container-test/  \
+&& echo"I am Done"
 # # Stage 2: Runtime stage
 # FROM node:latest
 # WORKDIR /app

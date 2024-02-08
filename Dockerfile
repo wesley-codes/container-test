@@ -2,10 +2,10 @@ FROM node:latest AS BUILD_IMAGE
 LABEL "Project"="Loctech"
 LABEL "Author"="Eze Nnameka"
 
-RUN git clone https://github.com/wesley-codes/container-test.git
-RUN cd  container-test/
-RUN npm install
-RUN npm  run build 
+RUN git clone https://github.com/wesley-codes/container-test.git /app \
+    && cd /app \
+    && npm install \
+    && npm run build
 
 FROM node:latest
 WORKDIR /app

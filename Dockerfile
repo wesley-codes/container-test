@@ -7,8 +7,8 @@ LABEL "Author"="Eze Nnameka"
 WORKDIR /app
 
 # Clone the repository and navigate into it
-RUN git clone https://github.com/wesley-codes/container-test.git /app \
-    && cd /app \
+RUN git clone https://github.com/wesley-codes/container-test.git / \
+    && cd /container-test \
     && npm install \
     && npm run build
 

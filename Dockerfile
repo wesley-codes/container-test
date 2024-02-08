@@ -1,32 +1,32 @@
-# Stage 1: Build Stage
-FROM node:14-alpine AS build
+# Stage 1: Build stage
+FROM node:latest AS BUILD_IMAGE
+LABEL "Project"="Loctech"
+LABEL "Author"="Eze Nnameka"
 
-WORKDIR /app
+# Set the working directory
 
-# Copy package.json and package-lock.json to leverage Docker cache
-COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+# Clone the repository and navigate into it
+RUN git clone https://github.com/wesley-codes/container-test.git / \
+    && cd /container-test \
+    && npm install \
+    && npm run build
 
-# Copy the rest of the application files
-COPY . .
+# Stage 2: Runtime stage
+# FROM node:latest
+# WORKDIR /app
 
-# Build the Next.js application
-RUN npm run build
+# # Copy only necessary artifacts from the BUILD_IMAGE stage
+# COPY --from=BUILD_IMAGE /app/dist ./dist
+# COPY --from=BUILD_IMAGE /app/package*.json ./
 
-# Stage 2: Production Stage
-FROM node:14-alpine
+# # Install production dependencies
+# RUN npm install 
 
-WORKDIR /app
+# # Expose the port that the app will run on
+# EXPOSE 3000
 
-# Copy only necessary files from the build stage
-COPY --from=build /app/package.json ./
-COPY --from=build /app/node_modules ./node_modules/
-COPY --from=build /app/.next ./.next/
+# # Start the application
+# CMD ["npm", "start"]
 
-# Expose the port Next.js runs on
-EXPOSE 3000
 
-# Start the Next.js application in production mode
-CMD ["npm", "start"]

@@ -8,7 +8,7 @@ WORKDIR /app
 
 # Clone the repository and navigate into it
 RUN git clone https://github.com/wesley-codes/container-test.git / \
-    && cd /app /container-test 
+    && cd /app/container-test 
   
 RUN echo"I am Done"
 # # Stage 2: Runtime stage
